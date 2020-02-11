@@ -1,13 +1,13 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
-import {Input} from './input';
+import { Input } from './input';
 
 export class Pagination extends React.Component {
 
   static propTypes = {
-    currentPage: React.PropTypes.number.isRequired,
-    totalPages: React.PropTypes.number.isRequired,
-    onChange: React.PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    totalPages: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -46,7 +46,7 @@ export class Pagination extends React.Component {
   }
 
   onCancelEditing() {
-    this.setState({isBeingEdited: false, dirtyValue: this.props.currentPage});
+    this.setState({ isBeingEdited: false, dirtyValue: this.props.currentPage });
   }
 
   onSubmit() {
@@ -64,13 +64,13 @@ export class Pagination extends React.Component {
   }
 
   renderCurrentPage() {
-    const {currentPage, totalPages} = this.props;
-    if (! this.state.isBeingEdited) {
+    const { currentPage, totalPages } = this.props;
+    if (!this.state.isBeingEdited) {
       return <a>{currentPage} of {totalPages}</a>;
     }
 
     return (
-      <span style={{height: '34px'}}>
+      <span style={{ height: '34px' }}>
         <Input
           ref='pagination-input'
           autoFocus={true}
@@ -85,7 +85,7 @@ export class Pagination extends React.Component {
   }
 
   renderPages() {
-    const {currentPage, totalPages} = this.props;
+    const { currentPage, totalPages } = this.props;
 
     return [
       <li key='first-page' onClick={e => this.onPageChange(1)}>

@@ -1,16 +1,16 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export class EditableText extends React.Component {
 
   static propTypes = {
-    onChange: React.PropTypes.func.isRequired,
-    isOpen: React.PropTypes.bool,
-    onValidate: React.PropTypes.func,
-    value: React.PropTypes.node,
-    hasError: React.PropTypes.bool,
-    errorHelpLabel: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool,
+    onValidate: PropTypes.func,
+    value: PropTypes.node,
+    hasError: PropTypes.bool,
+    errorHelpLabel: PropTypes.string,
+    placeholder: PropTypes.string,
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -42,7 +42,7 @@ export class EditableText extends React.Component {
       return false;
     }
 
-    return this.setState({isBeingEdited}, () => {
+    return this.setState({ isBeingEdited }, () => {
       if (this.state.isBeingEdited) {
         this.refs['edit-input'].focus();
       }
@@ -50,7 +50,7 @@ export class EditableText extends React.Component {
   }
 
   onCancelEditing() {
-    this.setState({isBeingEdited: false, dirtyValue: this.props.value});
+    this.setState({ isBeingEdited: false, dirtyValue: this.props.value });
   }
 
   onSubmit() {
@@ -63,7 +63,7 @@ export class EditableText extends React.Component {
   }
 
   onTextChange(e) {
-    return this.setState({dirtyValue: e.currentTarget.value});
+    return this.setState({ dirtyValue: e.currentTarget.value });
   }
 
   onHandleKeyDown(e) {
@@ -77,7 +77,7 @@ export class EditableText extends React.Component {
   }
 
   getValidationResult() {
-    if (! this.props.onValidate) {
+    if (!this.props.onValidate) {
       return '';
     }
 
@@ -98,7 +98,7 @@ export class EditableText extends React.Component {
   }
 
   renderErrorHelpLabel(status) {
-    if (! this.props.errorHelpLabel || status !== 'error') {
+    if (!this.props.errorHelpLabel || status !== 'error') {
       return null;
     }
 
@@ -110,7 +110,7 @@ export class EditableText extends React.Component {
   render() {
     const status = this.getValidationResult(); // '', warning, success, error
 
-    if (! this.state.isBeingEdited) {
+    if (!this.state.isBeingEdited) {
       return (
         <span className={`editable editable-click ${this.props.disabled ? 'disabled' : ''}`} onClick={e => this.onSetEditing(true)}>
           {this.props.value || this.props.placeholder}

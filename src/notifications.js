@@ -1,17 +1,17 @@
 import _ from 'lodash';
-import React from 'react';
+import PropTypes from 'prop-types';
 
-import {Notification} from './notification';
+import { Notification } from './notification';
 
-import {eventBus} from './lib/event-bus';
+import { eventBus } from './lib/event-bus';
 
 export class Notifications extends React.Component {
 
   static propTypes = {
-    position: React.PropTypes.string,
-    newestOnTop: React.PropTypes.bool,
-    maxOpened: React.PropTypes.number,
-    preventDuplicates: React.PropTypes.bool,
+    position: PropTypes.string,
+    newestOnTop: PropTypes.bool,
+    maxOpened: PropTypes.number,
+    preventDuplicates: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -36,7 +36,7 @@ export class Notifications extends React.Component {
 
   onClose(notification) {
     const notifications = _.reject(this.state.notifications, { id: notification.id });
-    this.setState({notifications});
+    this.setState({ notifications });
   }
 
   addNotification(notification) {
@@ -53,7 +53,7 @@ export class Notifications extends React.Component {
         notifications = _.reject(notifications, { id: oldestId });
       }
 
-      this.setState({notifications, counter: ++counter});
+      this.setState({ notifications, counter: ++counter });
     }
   }
 

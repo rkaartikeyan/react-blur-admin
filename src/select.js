@@ -1,27 +1,27 @@
 import _ from 'lodash';
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Select extends React.Component {
 
   static propTypes = {
-    placeholder: React.PropTypes.string,
-    maxHeight: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    onRenderValue: React.PropTypes.func,
-    options: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        value: React.PropTypes.oneOfType([
-          React.PropTypes.string,
-          React.PropTypes.number,
+    placeholder: PropTypes.string,
+    maxHeight: PropTypes.string,
+    onChange: PropTypes.func,
+    onRenderValue: PropTypes.func,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
         ]),
-        label: React.PropTypes.node,
+        label: PropTypes.node,
       }),
     ),
-    value: React.PropTypes.node,
-    isSearchable: React.PropTypes.bool,
-    isOpen: React.PropTypes.bool,
-    onSearch: React.PropTypes.func,
-    onToggleOpen: React.PropTypes.func, // used when the parent needs to know that isOpen was toggled
+    value: PropTypes.node,
+    isSearchable: PropTypes.bool,
+    isOpen: PropTypes.bool,
+    onSearch: PropTypes.func,
+    onToggleOpen: PropTypes.func, // used when the parent needs to know that isOpen was toggled
   }
 
   static defaultProps = {
@@ -51,18 +51,18 @@ export class Select extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isOpen !== this.props.isOpen) {
-      this.setState({isOpen: nextProps.isOpen}, this.onFocus);
+      this.setState({ isOpen: nextProps.isOpen }, this.onFocus);
     }
 
     if (nextProps.options !== this.props.options) {
-      this.setState({visibleOptions: nextProps.options, searchValue: ''});
+      this.setState({ visibleOptions: nextProps.options, searchValue: '' });
     }
 
-    if (this.props.value && ! nextProps.value) {
-      this.setState({activeIndex: 0, value: this.getValue(nextProps)});
+    if (this.props.value && !nextProps.value) {
+      this.setState({ activeIndex: 0, value: this.getValue(nextProps) });
     }
 
-    this.setState({value: this.getValue(nextProps)});
+    this.setState({ value: this.getValue(nextProps) });
   }
 
   onFocus() {
@@ -72,12 +72,12 @@ export class Select extends React.Component {
   }
 
   onToggleOpen() {
-    this.props.onToggleOpen(! this.state.isOpen);
-    this.setState({ isOpen: ! this.state.isOpen }, this.onFocus);
+    this.props.onToggleOpen(!this.state.isOpen);
+    this.setState({ isOpen: !this.state.isOpen }, this.onFocus);
   }
 
   onSetActiveIndex(value) {
-    this.setState({activeIndex: value, isOpen: true}, this.onFocus);
+    this.setState({ activeIndex: value, isOpen: true }, this.onFocus);
   }
 
   onSelectValue(selectedValue) {
@@ -98,7 +98,7 @@ export class Select extends React.Component {
       visibleOptions = this.getVisibleOptions(event.currentTarget.value);
     }
 
-    this.setState({searchValue, visibleOptions});
+    this.setState({ searchValue, visibleOptions });
   }
 
   onHandleKeyDown(e) {
@@ -139,12 +139,12 @@ export class Select extends React.Component {
       return props.onRenderValue(props.value);
     }
 
-    const option = _.find(props.options, {value: props.value});
+    const option = _.find(props.options, { value: props.value });
     return option && option.label || props.placeholder;
   }
 
   getVisibleOptions(searchValue) {
-    if (! searchValue) {
+    if (!searchValue) {
       return this.props.options;
     }
 
@@ -166,7 +166,7 @@ export class Select extends React.Component {
   }
 
   renderSearch() {
-    if (! this.props.isSearchable) {
+    if (!this.props.isSearchable) {
       return null;
     }
 
@@ -198,7 +198,7 @@ export class Select extends React.Component {
   }
 
   renderOptions() {
-    if (! this.props.options) {
+    if (!this.props.options) {
       return null;
     }
 

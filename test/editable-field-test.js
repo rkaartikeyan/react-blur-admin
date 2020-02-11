@@ -1,10 +1,10 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {expect} from 'chai';
+import PropTypes from 'prop-types';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
 
 import { EditableField } from '../src';
 
-describe('<EditableField/>', function() {
+describe('<EditableField/>', function () {
   it('Has default properties');
 
   it('Has an onChange function');

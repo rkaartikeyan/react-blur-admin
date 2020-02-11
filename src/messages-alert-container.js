@@ -1,12 +1,12 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export class MessagesAlertContainer extends React.Component {
 
   static propTypes = {
-    mailCount: React.PropTypes.number.isRequired,
-    settingsOnClick: React.PropTypes.func,
-    allMessagesOnClick: React.PropTypes.func,
-    markAllAsReadOnClick: React.PropTypes.func,
+    mailCount: PropTypes.number.isRequired,
+    settingsOnClick: PropTypes.func,
+    allMessagesOnClick: PropTypes.func,
+    markAllAsReadOnClick: PropTypes.func,
   }
 
   constructor(props) {
@@ -29,21 +29,21 @@ export class MessagesAlertContainer extends React.Component {
       <ul className='al-msg-center clearfix'>
         <li className={`dropdown ${this.state.isExpanded ? 'open' : ''}`}>
           <a className='msg dropdown-toggle' onClick={this.onClick.bind(this)}>
-            <i className='fa fa-envelope-o'/>
+            <i className='fa fa-envelope-o' />
             <span>{this.props.mailCount}</span>
-            <div className='notification-ring'/>
+            <div className='notification-ring' />
           </a>
           <div className='top-dropdown-menu dropdown-menu'>
-            <i className='dropdown-arr'/>
+            <i className='dropdown-arr' />
             <div className='header clearfix'>
               <strong className='red-text'>Messages</strong>
-                {this.props.markAllAsReadOnClick ? <a onClick={this.props.markAllAsReadOnClick}>Mark All as Read</a> : ''}
-                {this.props.settingsOnClick ? <a onClick={this.props.settingsOnClick}>Settings</a> : ''}
+              {this.props.markAllAsReadOnClick ? <a onClick={this.props.markAllAsReadOnClick}>Mark All as Read</a> : ''}
+              {this.props.settingsOnClick ? <a onClick={this.props.settingsOnClick}>Settings</a> : ''}
             </div>
             <div className='msg-list'>
               {this.props.children}
             </div>
-              {this.props.allMessagesOnClick ? <a onClick={this.props.allMessagesOnClick}>See all messages</a> : ''}
+            {this.props.allMessagesOnClick ? <a onClick={this.props.allMessagesOnClick}>See all messages</a> : ''}
           </div>
         </li>
       </ul>

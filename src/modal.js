@@ -1,19 +1,19 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Button } from './button';
 
 export class Modal extends React.Component {
 
   static propTypes = {
-    title: React.PropTypes.string,
-    buttonText: React.PropTypes.string,
-    className: React.PropTypes.string,
-    size: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    align: React.PropTypes.string,
-    type: React.PropTypes.string,
-    onClose: React.PropTypes.func,
-    isOpen: React.PropTypes.bool,
+    title: PropTypes.string,
+    buttonText: PropTypes.string,
+    className: PropTypes.string,
+    size: PropTypes.string,
+    icon: PropTypes.string,
+    align: PropTypes.string,
+    type: PropTypes.string,
+    onClose: PropTypes.func,
+    isOpen: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -28,43 +28,43 @@ export class Modal extends React.Component {
 
   getHeaderClass() {
     switch (this.props.type) {
-    case 'success':
-      return 'success';
+      case 'success':
+        return 'success';
 
-    case 'primary':
-      return 'primary';
+      case 'primary':
+        return 'primary';
 
-    case 'remove':
-    case 'danger':
-      return 'danger';
+      case 'remove':
+      case 'danger':
+        return 'danger';
 
-    case 'info':
-      return 'info';
+      case 'info':
+        return 'info';
 
-    case 'warning':
-      return 'warning';
+      case 'warning':
+        return 'warning';
 
-    default:
-      throw new Error('Unknown Modal Type');
+      default:
+        throw new Error('Unknown Modal Type');
     }
   }
 
   getBodyAlignment() {
     switch (this.props.align) {
-    case 'center':
-      return 'text-center';
+      case 'center':
+        return 'text-center';
 
-    case 'right':
-      return 'text-right';
+      case 'right':
+        return 'text-right';
 
-    case 'left':
-    default:
-      return '';
+      case 'left':
+      default:
+        return '';
     }
   }
 
   renderIcon() {
-    if (! this.props.icon) {
+    if (!this.props.icon) {
       return null;
     }
 
@@ -73,26 +73,26 @@ export class Modal extends React.Component {
 
   renderModalSize() {
     switch (this.props.size) {
-    case 'xs':
-    case 'extra-small':
-      return 'xsmall-panel';
+      case 'xs':
+      case 'extra-small':
+        return 'xsmall-panel';
 
-    case 'sm':
-    case 'small':
-      return 'small-panel';
+      case 'sm':
+      case 'small':
+        return 'small-panel';
 
-    case 'md':
-    case 'medium':
-      return 'medium-panel';
+      case 'md':
+      case 'medium':
+        return 'medium-panel';
 
-    case 'lg':
-    case 'large':
-      return 'large-panel';
+      case 'lg':
+      case 'large':
+        return 'large-panel';
 
-    case 'auto':
-    case 'none':
-    default:
-      return '';
+      case 'auto':
+      case 'none':
+      default:
+        return '';
     }
   }
 

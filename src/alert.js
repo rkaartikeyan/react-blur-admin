@@ -1,13 +1,13 @@
 import _ from 'lodash';
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Alert extends React.Component {
 
   static propTypes = {
-    type: React.PropTypes.string,
-    className: React.PropTypes.string,
-    isDismissible: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
+    type: PropTypes.string,
+    className: PropTypes.string,
+    isDismissible: PropTypes.bool,
+    onClose: PropTypes.func,
   }
 
   static defaultProps = {
@@ -19,31 +19,31 @@ export class Alert extends React.Component {
 
   getAlertClass() {
     switch (this.props.type) {
-    case 'success':
-      return 'success';
+      case 'success':
+        return 'success';
 
-    case 'remove':
-    case 'danger':
-      return 'danger';
+      case 'remove':
+      case 'danger':
+        return 'danger';
 
-    case 'info':
-      return 'info';
+      case 'info':
+        return 'info';
 
-    case 'warning':
-      return 'warning';
+      case 'warning':
+        return 'warning';
 
-    default:
-      throw new Error('Unknown Alert Type');
+      default:
+        throw new Error('Unknown Alert Type');
     }
   }
 
   renderCloseButton() {
-    if (! this.props.isDismissible) {
+    if (!this.props.isDismissible) {
       return null;
     }
     return (
       <button className="toast-close-button" onClick={this.props.onClose}>
-      x
+        x
       </button>
     );
   }

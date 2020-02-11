@@ -1,14 +1,14 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export class MessagesAlert extends React.Component {
 
   static propTypes = {
-    user: React.PropTypes.object,
-    subject: React.PropTypes.string,
-    createdAt: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    relativeTime: React.PropTypes.string,
-    timestamp: React.PropTypes.string,
+    user: PropTypes.object,
+    subject: PropTypes.string,
+    createdAt: PropTypes.string,
+    onClick: PropTypes.func,
+    relativeTime: PropTypes.string,
+    timestamp: PropTypes.string,
   }
 
   onClick() {
@@ -21,7 +21,7 @@ export class MessagesAlert extends React.Component {
     return (
       <div onClick={this.onClick.bind(this)} className='clearfix'>
         <div className='img-area'>
-          <img src={this.props.user.picture} className='photo-msg-item'/>
+          <img src={this.props.user.picture} className='photo-msg-item' />
         </div>
         <div className='msg-area'>
           <div>{this.props.subject}</div>
